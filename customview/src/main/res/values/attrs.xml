@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--
+        JuHuaLineCount 菊花的花瓣数目
+        JuHuaLineWidth 花瓣的宽度
+        JuHuaLineStartColor 菊花的第一个花瓣的颜色
+        JuHuaLineEndColor 菊花的最后一个花瓣的颜色
+        JuHuaInnerRadius 菊花的花蕊的半径
+    -->
+    <declare-styleable name="JuHuaLoadingView">
+        <attr name="JuHuaLineCount" format="integer"/>
+        <attr name="JuHuaLineWidth" format="dimension"/>
+        <attr name="JuHuaLineStartColor" format="color"/>
+        <attr name="JuHuaLineEndColor" format="color"/>
+        <attr name="JuHuaInnerRadius" format="dimension"/>
+    </declare-styleable>
+
+</resources>
