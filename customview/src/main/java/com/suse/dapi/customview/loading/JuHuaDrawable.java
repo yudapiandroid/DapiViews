@@ -30,11 +30,12 @@ public class JuHuaDrawable extends BaseLoadingDrawable {
     private int[] colors; // 每条的颜色
     private Point[] pointStart;
     private Point[] pointEnd;
-
+    private int speed = 70;
+    private long lastRefreshTime = 0;
     private Paint paint;
 
     public JuHuaDrawable(View attachView,int lineWidth,int lineCount,int innerRadius,int startColor,int endColor) {
-        super(attachView,80);
+        super(attachView);
         init(lineWidth,lineCount,innerRadius,startColor,endColor);
     }
 
@@ -46,7 +47,7 @@ public class JuHuaDrawable extends BaseLoadingDrawable {
      * @param attachView
      */
     public JuHuaDrawable(View attachView){
-        super(attachView,80);
+        super(attachView);
         init(
                 DensityUtil.dip2px(attachView.getContext(),2),
                 14,
@@ -162,7 +163,10 @@ public class JuHuaDrawable extends BaseLoadingDrawable {
             // 绘制
             canvas.drawLine(centerX + pointStart[i].x,centerY + pointStart[i].y,centerX + pointEnd[i].x,centerY + pointEnd[i].y,paint);
         }
-        currentFrame--;
+        if(System.currentTimeMillis() - lastRefreshTime > speed){
+            lastRefreshTime = System.currentTimeMillis();
+            currentFrame--;
+        }
     }// end m
 
 }

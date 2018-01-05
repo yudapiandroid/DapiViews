@@ -19,20 +19,16 @@ public abstract class BaseLoadingDrawable extends Drawable implements Animatable
     private boolean isRun = false;
     private View attachView; // 该drawable依附的view
 
-    private int speed;
     private long lastRefreshTime;
 
 
     /**
      *
-     * speed 多久刷新一次
      *
      * @param attachView
-     * @param speed
      */
-    public BaseLoadingDrawable(View attachView,int speed) {
+    public BaseLoadingDrawable(View attachView) {
         this.attachView = attachView;
-        this.speed = speed;
     }
 
     @Override
@@ -56,19 +52,8 @@ public abstract class BaseLoadingDrawable extends Drawable implements Animatable
         if(!isRunning()){
             return;
         }
-        long currentTime = System.currentTimeMillis();
-        if(currentTime - lastRefreshTime > speed){
-            drawSelf(canvas,current,total);
-            lastRefreshTime = currentTime;
-            attachView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    attachView.invalidate();
-                }
-            },speed);
-        }else{
-            attachView.postInvalidate();
-        }
+        drawSelf(canvas,current,total);
+        attachView.postInvalidate();
     } // end draw
 
 
